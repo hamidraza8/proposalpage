@@ -1,0 +1,19 @@
+
+
+    <div class="card-body">
+<form [formGroup]="proposalForm"  (ngSubmit)="onSubmit()">
+
+<app-general [proposalForm]="proposalForm" [formData]="proposalEntity">
+  
+</app-general>
+
+<app-applicant formName="APPLICANT_DETAIL"  [proposalForm]="proposalForm"  [formData]="proposalEntity" Key="IDENTIFICATION_CODE">
+</app-applicant>
+
+<button type="submit" [disabled]="!proposalForm.valid">Submit</button>
+
+  <button (click)="updateProfile()">Update Profile</button>
+
+</form>
+{{proposalForm.value | json}}
+    </div>

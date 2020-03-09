@@ -1,0 +1,49 @@
+<h6>
+Applicants({{selectedTabIndex}})
+</h6>
+
+<ul class="nav nav-tabs">
+        <li [ngClass]="{'active': index == selectedTabIndex}" style="cursor: pointer;"
+            *ngFor="let tab of Array().controls ; let index = index">
+            <a data-toggle="tab"
+                href="#applicant{{index}}">
+                Applicant {{index + 1}}
+             
+            </a>
+        </li>
+           <i *ngIf="index > 0" class="glyphicon glyphicon-remove" (click)="del(index)"></i>
+        <i class="glyphicon glyphicon-plus" style="color: #23527C; margin: 10px; cursor: pointer;"
+            (click)="addNewItem()"></i>
+    </ul>
+
+
+
+
+ 
+<div  [formGroup]="formGroup">
+  <div class="tab-content">
+<div formArrayName="Array"
+      *ngFor="let item of Array().controls ; let i = index;"   id="applicant{{i}}"   [ngClass]="[i == selectedTabIndex? 'tab-pane fade in active' : 'tab-pane fade in']"   >
+  <div [formGroupName]="i"   >
+  <div class="panel panel-default" style="margin-top: 10px;">
+<label>
+  select {{selectedTabIndex}}
+   NAME {{i}}
+    <input type="text" formControlName="FIRST_NAME_THAI" >
+  </label>
+   <label>
+   ID CARD
+    <input type="text" formControlName="APPLICATION_NUMBER" >
+  </label>
+
+<app-address formName="ADDRESS" Key="ADDRESS_CODE"  [proposalForm]="proposalForm" [parent]="item.value" [formData]="formData">
+</app-address>  
+ </div>
+  </div>
+</div>
+ </div>
+
+
+</div>
+ 
+

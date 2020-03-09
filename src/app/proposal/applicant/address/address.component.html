@@ -1,0 +1,54 @@
+<p>
+ADDRESS</p>
+<ul class="nav nav-tabs"  >
+        <li [ngClass]="{'active': index == selectedTabIndex}" style="cursor: pointer;"
+            *ngFor="let tab of Array().controls ; let index = index; " >
+            <a data-toggle="tab"   *ngIf="tab.controls.RowState.value!=4" 
+                href="#address{{index}}" (click)="selectedTabIndex=index;" >
+            Address {{index+1 }}
+        <i  style="cursor: pointer;" class="glyphicon glyphicon-remove" (click)="del(index)"></i>
+
+
+
+            </a>
+        </li>
+         
+        <i class="glyphicon glyphicon-plus" style="color: #23527C; margin: 10px; cursor: pointer;"
+            (click)="addNewItem()"></i>
+    </ul>
+  <div  [formGroup]="formGroup">
+  <div class="tab-content">
+<div formArrayName="Array"
+      *ngFor="let item of Array().controls ; let i = index;"   id="address{{i}}"   [ngClass]="[i == selectedTabIndex? 'tab-pane fade in active' : 'tab-pane fade in']"   >
+{{item.controls.RowState.value}}
+  <div [formGroupName]="i"  >
+
+ <div class="panel panel-default" style="margin-top: 10px;">
+<label>
+   ADDRESS1
+    <input type="text" formControlName="ADDRESS1" >
+  </label>
+
+  <div class="panel panel-default" style="margin-top: 10px;">
+
+
+   <label>
+APPLICATION_NUMBER
+    <input type="text" formControlName="APPLICATION_NUMBER" >
+  </label>
+
+ <label>
+Address_Desc
+    <input type="text" formControlName="Address_Desc" >
+  </label>
+
+  
+   <input type="button" value="Delete" (click)="del(i)" >
+
+  </div>
+ 
+
+
+</div>
+  </div>
+
